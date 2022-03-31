@@ -18,7 +18,11 @@ setup-dev:
 	docker exec -it docsparser bash -c "python manage.py createsuperuser --email admin@example.com --username admin"
 
 pip:
-	docker exec -it docsparser bash -c "pip install -r requirements.txt"	
+	docker exec docsparser bash -c "pip install -r requirements.txt"	
 
 sh: 
 	docker exec -it docsparser bash
+
+test:
+	@echo "Running tests"
+	docker exec docsparser bash -c "python manage.py test"
