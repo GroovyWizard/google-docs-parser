@@ -1,6 +1,5 @@
-FROM python:3-alpine
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+FROM python:3.9.0-alpine3.12 
+RUN apk add --no-cache bash
 WORKDIR /backend
 COPY requirements.txt /backend/
 RUN pip install -r requirements.txt
