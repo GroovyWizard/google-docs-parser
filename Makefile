@@ -16,7 +16,7 @@ build:
 
 migrate:
 	@echo "Migrating"
-	docker exec docsparser bash -c "python manage.py makemigrations"
+	docker exec -it docsparser bash -c "python manage.py makemigrations"
 	docker exec docsparser bash -c "python manage.py migrate"
 
 setup-dev: 

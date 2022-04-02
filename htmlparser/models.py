@@ -7,5 +7,5 @@ class TimeStampMixin(models.Model):
     class Meta:
         abstract = True
 
-class RawZip(TimeStampMixin):
+class RawArchive(TimeStampMixin):
     filename = models.TextField()
