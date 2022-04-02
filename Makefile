@@ -1,10 +1,18 @@
 up:
 	@echo "Starting container"
-	docker-compose up
-
-up-d: 
-	@echo "Starting container"
 	docker-compose up -d
+
+down: 
+	@echo "Stopping container"
+	docker-compose down
+
+up-int: 
+	@echo "Starting container"
+	docker-compose up 
+
+build:
+	@echo "Building container"
+	docker-compose build
 
 migrate:
 	@echo "Migrating"
@@ -18,7 +26,7 @@ setup-dev:
 	docker exec -it docsparser bash -c "python manage.py createsuperuser --email admin@example.com --username admin"
 
 pip:
-	docker exec docsparser bash -c "pip install -r requirements.txt"	
+	docker exec docsparser bash -c "pip3 install -r requirements.txt"	
 
 sh: 
 	docker exec -it docsparser bash
