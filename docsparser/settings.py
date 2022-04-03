@@ -20,6 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'drf_spectacular',
     'htmlparser'
 ]
 
@@ -83,6 +85,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom Rest Framework Specs
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# Custom Open Api specification for our Swagger
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Google Docs Parser',
+    'DESCRIPTION': '',
+    'VERSION': '0.0.1',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

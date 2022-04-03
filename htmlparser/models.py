@@ -9,3 +9,4 @@ class TimeStampMixin(models.Model):
 
 class RawArchive(TimeStampMixin):
     filename = models.TextField()
+    file = models.FileField(upload_to='upload/', null=True, blank=True)

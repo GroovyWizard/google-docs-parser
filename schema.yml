@@ -1,0 +1,195 @@
+openapi: 3.0.3
+info:
+  title: Google Docs Parser
+  version: 0.0.1
+paths:
+  /raw_archives/:
+    get:
+      operationId: raw_archives_list
+      tags:
+      - raw_archives
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RawArchive'
+          description: ''
+    post:
+      operationId: raw_archives_create
+      tags:
+      - raw_archives
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RawArchive'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RawArchive'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RawArchive'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RawArchive'
+          description: ''
+  /raw_archives/{id}/:
+    get:
+      operationId: raw_archives_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this raw archive.
+        required: true
+      tags:
+      - raw_archives
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RawArchive'
+          description: ''
+    put:
+      operationId: raw_archives_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this raw archive.
+        required: true
+      tags:
+      - raw_archives
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RawArchive'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RawArchive'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RawArchive'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RawArchive'
+          description: ''
+    patch:
+      operationId: raw_archives_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this raw archive.
+        required: true
+      tags:
+      - raw_archives
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRawArchive'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRawArchive'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRawArchive'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RawArchive'
+          description: ''
+    delete:
+      operationId: raw_archives_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this raw archive.
+        required: true
+      tags:
+      - raw_archives
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    PatchedRawArchive:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        filename:
+          type: string
+        file:
+          type: string
+          format: uri
+          nullable: true
+    RawArchive:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        filename:
+          type: string
+        file:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - filename
+      - id
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
