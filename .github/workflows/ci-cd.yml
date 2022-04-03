@@ -1,4 +1,4 @@
-name: Python package
+name: Google Docs Parser
 
 on: [push]
 
